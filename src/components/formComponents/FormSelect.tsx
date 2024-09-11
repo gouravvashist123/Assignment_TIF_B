@@ -1,8 +1,9 @@
-import React from "react";
+import React,{useState} from "react";
 import { useTheme } from "@chakra-ui/react";
 import FromWrapper from "./FormWrapper";
 import { IFormInputProps } from "@src/interface/forms";
 import ReactSelect, { Props } from "react-select";
+import { useEffect } from "react";
 
 interface IFormSelectProps
   extends Omit<IFormInputProps, "inputProps" | "type" | "onChange" | "onBlur"> {
@@ -37,6 +38,15 @@ const FormSelect: React.FC<IFormSelectProps> = ({
     onBlur && onBlur(event); // Pass the event to the onBlur handler
   };
 
+  const [menuTarget, setMenuTarget] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    // Ensure the document is only accessed on the client side
+    if (typeof document !== "undefined") {
+      setMenuTarget(document.body);
+    }
+  }, []);
+
   return (
     <FromWrapper
       isInvalid={Boolean(error && touched)}
@@ -53,7 +63,8 @@ const FormSelect: React.FC<IFormSelectProps> = ({
         onChange={handleChange}
         onBlur={handleBlur} // Handle the onBlur event
         options={options}
-        menuPortalTarget={document.body}  // added
+        // menuPortalTarget={document.body}  // added
+        menuPortalTarget={menuTarget}
         styles={{
           container: (base) => ({
             ...base,

@@ -82,6 +82,36 @@ const HomeLayout: React.FC = () => {
     }));
   };
 
+  const handleJobDetailsFormSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    // Additional form submission logic if necessary
+  };
+
+  const handleJobDetailsFormChange = (updatedValues: any) => {
+    setState((prevState) => ({
+      ...prevState,
+      jobDetails: {
+        ...prevState.jobDetails,
+        ...updatedValues,
+      },
+    }));
+  };
+
+  const handleInterviewSettingsFormSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    // Additional form submission logic if necessary
+  };
+
+  const handleInterviewSettingsFormChange = (updatedValues: any) => {
+    setState((prevState) => ({
+      ...prevState,
+      interviewSettings: {
+        ...prevState.interviewSettings,
+        ...updatedValues,
+      },
+    }));
+  };
+
   const handleRequisitionFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     // Additional form submission logic if necessary
@@ -105,10 +135,10 @@ const HomeLayout: React.FC = () => {
                 <RequisitionDetailsForm onSubmit={handleRequisitionFormSubmit} onFormChange={handleRequisitionFormChange} />
               </TabPanel>
               <TabPanel>
-                <JobDetailsForm />
+                <JobDetailsForm onSubmit={handleJobDetailsFormSubmit} onFormChange={handleJobDetailsFormChange} />
               </TabPanel>
               <TabPanel>
-                <InterviewSettingsForm />
+                <InterviewSettingsForm onSubmit={handleInterviewSettingsFormSubmit} onFormChange={handleInterviewSettingsFormChange}  />
               </TabPanel>
             </TabPanels>
             <PreviewCard requisitionDetails={requisitionDetails}

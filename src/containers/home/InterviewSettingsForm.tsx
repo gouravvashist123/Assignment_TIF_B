@@ -7,7 +7,13 @@ import { IInterViewSettings } from "../../interface/forms";
 import { interviewDurationOptions, interviewLanguageOptions, interviewModeOptions } from "./constants";
 import * as Yup from "yup";
 
-const InterviewSettingsForm: React.FC = () => {
+
+interface InterviewSettingsFormProps {
+  onFormChange: (values: IInterViewSettings) => void;
+  onSubmit: (e: React.FormEvent) => void;
+}
+
+const InterviewSettingsForm: React.FC<InterviewSettingsFormProps> = ({ onFormChange, onSubmit }) => {
   const { state, setState } = useData();
   const formik = useFormik<IInterViewSettings>({
     initialValues: state.interviewSettings,

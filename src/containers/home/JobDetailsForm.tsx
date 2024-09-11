@@ -6,7 +6,12 @@ import { useData } from "./DataProvider";
 import FormInput from "../../components/formComponents/FormInput";
 import { IJobDetails } from "../../interface/forms";
 
-const JobDetailsForm: React.FC = () => {
+interface JobDetailsFormProps {
+  onFormChange: (values: IJobDetails) => void;
+  onSubmit: (e: React.FormEvent) => void;
+}
+
+const JobDetailsForm: React.FC<JobDetailsFormProps> = ({ onFormChange, onSubmit }) => {
   const {state, setState} = useData();
   const formik = useFormik<IJobDetails>({
     initialValues: state.jobDetails,

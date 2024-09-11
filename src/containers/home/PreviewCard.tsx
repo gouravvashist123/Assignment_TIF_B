@@ -1,14 +1,24 @@
 import { Box, Flex, Text, Grid } from "@chakra-ui/react";
 import React from "react";
 
-// interface PreviewCardProps {
-//   details: {
-//     requisitionTitle: string;
-//     noOfOpenings: number;
-//     urgency: string;
-//     gender: string;
-//   };
-// }
+interface PreviewCardProps {
+  requisitionDetails: {
+    requisitionTitle: string;
+    noOfOpenings: number;
+    urgency: string;
+    gender: string;
+  };
+  jobDetails: {
+    jobTitle: string;
+    jobDetails: string;
+    jobLocation: string;
+  };
+  interviewSettings: {
+    interviewDuration: string;
+    interviewLanguage: string;
+    interviewMode: string;
+  };
+}
 
 const DataCard: React.FC<{ title: string; children: React.ReactNode }> = ({
   title,
@@ -42,8 +52,8 @@ const KeyValue: React.FC<{
   );
 };
 
-const PreviewCard: React.FC<{ requisitionDetails: any, jobDetails: any, interviewSettings: any }> = ({ requisitionDetails, jobDetails, interviewSettings }) => {
-  if (!requisitionDetails) {
+const PreviewCard: React.FC<PreviewCardProps> = ({ requisitionDetails, jobDetails, interviewSettings }) => {
+  if (!requisitionDetails || !jobDetails || !interviewSettings) {
     return <div>No details available</div>; // Added a fallback to avoid undefined errors
   }
 
