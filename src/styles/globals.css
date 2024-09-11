@@ -35,3 +35,8 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.container {
+  position: relative;
+  overflow: visible; /* Allows dropdown to expand beyond the container */
+}

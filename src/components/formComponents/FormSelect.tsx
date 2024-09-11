@@ -53,6 +53,7 @@ const FormSelect: React.FC<IFormSelectProps> = ({
         onChange={handleChange}
         onBlur={handleBlur} // Handle the onBlur event
         options={options}
+        menuPortalTarget={document.body}  // added
         styles={{
           container: (base) => ({
             ...base,
@@ -61,6 +62,7 @@ const FormSelect: React.FC<IFormSelectProps> = ({
             height: "auto",
             maxHeight: "none",
             minHeight: "none",
+            zIndex: 10,           //added
           }),
           control: (base, { isFocused }) => ({
             ...base,
@@ -79,16 +81,33 @@ const FormSelect: React.FC<IFormSelectProps> = ({
             "&:hover": {
               border: `1px solid ${theme.colors.primary}`,
             },
+            zIndex: 10,      //added
+          }),
+          menu: (base) => ({  //menu added
+            ...base,
+            zIndex: 9999, // Ensure the dropdown options are rendered on top
+          }),
+          menuPortal: (base) => ({ // menuportal added
+            ...base,
+            zIndex: 9999, // Ensures the menu portal is on top of all elements
           }),
           valueContainer: (base) => ({
             ...base,
             paddingLeft: "20px",
           }),
-          option: (base) => ({
+          // option: (base) => ({
+          //   ...base,
+          //   // backgroundColor: 'red',
+          //   fontSize: ".875rem",
+          //   fontWeight: "500",
+          // }),
+          option: (base, { isFocused }) => ({
             ...base,
-            // backgroundColor: 'red',
             fontSize: ".875rem",
             fontWeight: "500",
+            backgroundColor: isFocused ? theme.colors.primaryLight : "white",
+            color: isFocused ? theme.colors.primary : "black",
+            zIndex: 20, // Ensure individual options remain on top
           }),
         }}
         {...selectProps}
