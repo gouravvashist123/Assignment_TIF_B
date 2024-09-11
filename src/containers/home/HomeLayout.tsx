@@ -9,7 +9,7 @@ import { useData } from "./DataProvider";
 const HomeLayout: React.FC = () => {
   const { state } = useData();
   const [currentTab, setCurrentTab] = useState(0);
-  const { jobDetails, requisitionDetails } = state;
+  const { jobDetails, requisitionDetails, interviewSettings } = state;
 
   const isRequisitionDetailsValid = () => {
     return requisitionDetails.requisitionTitle && requisitionDetails.noOfOpenings > 0 &&
@@ -70,7 +70,9 @@ const HomeLayout: React.FC = () => {
                 <InterviewSettingsForm />
               </TabPanel>
             </TabPanels>
-            <PreviewCard details={requisitionDetails} />
+            <PreviewCard requisitionDetails={requisitionDetails}
+                         jobDetails={jobDetails} 
+                         interviewSettings={interviewSettings} />
             {/* <PreviewCard details={jobDetails} /> */}
           </Box>
         </Tabs>

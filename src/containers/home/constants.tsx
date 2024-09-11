@@ -1,37 +1,37 @@
 export const interviewLanguageOptions = [
   {
     label: "English",
-    value: "en",
+    value: "English",
   },
   {
     label: "Hindi",
-    value: "hi",
+    value: "Hindi",
   },
 ];
 
 export const interviewDurationOptions = [
   {
     label: "Short",
-    value: "short",
+    value: "Short",
   },
   {
     label: "Medium",
-    value: "medium",
+    value: "Medium",
   },
   {
     label: "Long",
-    value: "long",
+    value: "Long",
   },
 ];
 
 export const interviewModeOptions = [
   {
     label: "Online",
-    value: "online",
+    value: "Online",
   },
   {
     label: "Offline",
-    value: "offline",
+    value: "Offline",
   },
 ];
 

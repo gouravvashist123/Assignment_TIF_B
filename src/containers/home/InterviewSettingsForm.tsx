@@ -51,7 +51,8 @@ const InterviewSettingsForm: React.FC = () => {
           placeholder="Select interview duration"
           name="interviewDuration"
           options={interviewDurationOptions}
-          onChange={formik.handleChange}
+          // onChange={formik.handleChange}  
+          onChange={(value: string) => formik.setFieldValue("interviewDuration", value)}
           onBlur={formik.handleBlur}
           // onBlur={() => formik.setFieldTouched("interviewDuration")}
           value={formik.values?.interviewDuration}
