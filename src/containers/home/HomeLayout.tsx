@@ -72,6 +72,21 @@ const HomeLayout: React.FC = () => {
     }
   };
 
+  const handleRequisitionFormChange = (updatedValues: any) => {
+    setState((prevState) => ({
+      ...prevState,
+      requisitionDetails: {
+        ...prevState.requisitionDetails,
+        ...updatedValues,
+      },
+    }));
+  };
+
+  const handleRequisitionFormSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    // Additional form submission logic if necessary
+  };
+
   return (
     <Box w="100%">
       <Container maxW="1200px">
@@ -87,7 +102,7 @@ const HomeLayout: React.FC = () => {
           <Box display="grid" gridTemplateColumns="3fr 2fr" gap="24px">
             <TabPanels>
               <TabPanel>
-                <RequisitionDetailsForm />
+                <RequisitionDetailsForm onSubmit={handleRequisitionFormSubmit} onFormChange={handleRequisitionFormChange} />
               </TabPanel>
               <TabPanel>
                 <JobDetailsForm />

@@ -9,7 +9,7 @@ import { IRequisitionDetails } from "../../interface/forms";
 import { genderOptions, urgencyOptions } from "./constants";
 
 interface RequisitionDetailsFormProps {
-  onSubmit: () => void; // Just a trigger for submission (no arguments)
+  onSubmit: (e: React.FormEvent) => void; // Just a trigger for submission (no arguments)
   onFormChange: (values: IRequisitionDetails) => void; // Pass form values to parent
 }
 
@@ -37,7 +37,7 @@ const RequisitionDetailsForm: React.FC<RequisitionDetailsFormProps> = ({ onFormC
         requisitionDetails: values,
       }));
       onFormChange(values);
-      onSubmit();
+      // onSubmit();
     },
   });
 
