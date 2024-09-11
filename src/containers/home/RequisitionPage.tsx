@@ -91,7 +91,7 @@ const RequisitionPage: React.FC = () => {
   return (
     <Flex flexDirection="column" alignItems="center" p="2rem">
       {/* Preview Card displaying real-time data */}
-      {/* <PreviewCard details={formDetails.requisitionDetails} /> */} // just changed
+      {/* <PreviewCard details={formDetails.requisitionDetails} /> */}
       <PreviewCard 
         requisitionDetails={formDetails.requisitionDetails}      // added
         jobDetails={formDetails.jobDetails}
