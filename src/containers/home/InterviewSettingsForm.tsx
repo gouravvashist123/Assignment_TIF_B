@@ -17,11 +17,12 @@ const InterviewSettingsForm: React.FC = () => {
       interviewMode: Yup.string().required("Interview Mode is required"),
     }),
     onSubmit: (values) => {
+      // alert("Form successfully submitted");
       setState(prevState => ({
         ...prevState,
         interviewSettings: values,
       }));
-      alert("Form successfully submitted");
+      
     },
   });
 

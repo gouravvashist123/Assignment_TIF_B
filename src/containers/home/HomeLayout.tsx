@@ -7,7 +7,7 @@ import PreviewCard from "./PreviewCard";
 import { useData } from "./DataProvider";
 
 const HomeLayout: React.FC = () => {
-  const { state } = useData();
+  const { state ,setState } = useData();
   const [currentTab, setCurrentTab] = useState(0);
   const { jobDetails, requisitionDetails, interviewSettings } = state;
 
@@ -18,6 +18,10 @@ const HomeLayout: React.FC = () => {
 
   const isJobDetailsValid = () => {
     return jobDetails.jobTitle && jobDetails.jobDetails && jobDetails.jobLocation;
+  };
+
+  const isInterviewSettingsValid = () => {
+    return interviewSettings.interviewMode && interviewSettings.interviewDuration && interviewSettings.interviewLanguage;
   };
 
   const handleTabChange = (index: number) => {
@@ -35,8 +39,30 @@ const HomeLayout: React.FC = () => {
       setCurrentTab(1); // Move to the Job Details tab
     } else if (currentTab === 1 && isJobDetailsValid()) {
       setCurrentTab(2); // Move to the Interview Settings tab
-    } else if (currentTab === 2) {
+    } else if (currentTab === 2 && isInterviewSettingsValid()) {
+      alert("Form successfully submitted");
+      setState({
+        requisitionDetails: {
+          requisitionTitle: "",
+          noOfOpenings: 0,
+          urgency: "",
+          gender: "",
+        },
+        jobDetails: {
+          jobTitle: "",
+          jobDetails: "",
+          jobLocation: "",
+        },
+        interviewSettings: {
+          interviewMode: "",
+          interviewDuration: "",
+          interviewLanguage: "",
+        },
+      });// resetting the form field values
+
+      setCurrentTab(0); //Displaying the first form after final submission
       // Handle form submission or final actions here
+
     }
   };
 
@@ -77,7 +103,8 @@ const HomeLayout: React.FC = () => {
           </Box>
         </Tabs>
 
-        <Flex w="100%" justify="space-between" mt="2rem">
+        {/* <Flex w="100%" justify="space-between" mt="2rem"> */}
+        <Flex w="100%" justify="center" mt="2rem" gap="20px">
           {currentTab > 0 && (
             <Button colorScheme="gray" onClick={handlePrevious}>
               Previous
